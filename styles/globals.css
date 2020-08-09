@@ -14,3 +14,23 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.ani-item {
+  display: flex !important;
+  align-items: center !important;   
+  cursor: pointer;
+}
+
+.ani-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  grid-gap: 20px 0;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.content {
+  margin: 10px;
+}
