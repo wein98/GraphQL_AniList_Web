@@ -6,10 +6,10 @@ const GET_ANIME_DETAILS = gql `
         media (id: $id) {
             id
             title {
-            romaji
+                romaji
             }
             coverImage {
-                extraLarge
+                large
             }
             type
             popularity
@@ -32,10 +32,10 @@ const useAnimeDetails = (mediaId) => {
         }
     })
 
-    if (loading) return 'Loading...';
+    if (loading) return null;
     if (error) return `Error! ${error.message}`;
 
-    return [data.Page.media]
+    return data.Page.media[0]
 }
 
 export default useAnimeDetails;

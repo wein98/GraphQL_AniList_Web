@@ -49,3 +49,16 @@ a {
 .input {
   margin: 10px;
 }
+
+.detail-title {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.ani-detail {
+  display: flex !important;
+  align-items: center !important;   
+  cursor: pointer;
+  margin: 20px;
+}
+
