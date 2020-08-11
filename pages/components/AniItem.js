@@ -1,4 +1,3 @@
-// import './AniItem.css';
 import React from 'react';
 
 const AniItem = ({ anime }) => {

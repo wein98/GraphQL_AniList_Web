@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 const usePage = (activePage, term) => {
     const [animes, setAnimes] = useState([]);
+    const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
         if (term === "") {
@@ -62,7 +63,7 @@ const usePage = (activePage, term) => {
         var res = null;
     
         function handleData(data) {
-            res = data.data.Page.media;
+            res = data.data.Page;
         }
     
         function handleError(error) {
@@ -72,10 +73,11 @@ const usePage = (activePage, term) => {
     
         const x = await fetch(url, options).then(handleResponse).then(handleData).catch(handleError);
         
-        setAnimes(res);
+        setAnimes(res.media);
+        setTotalPages(res.pageInfo.lastPage)
       }
 
-      return [animes, getData];
+      return [animes, totalPages];
 }
 
 export default usePage;

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import AniList from './components/AniList';
 import Pagination from '@material-ui/lab/Pagination';
-import usePage from './hooks/usePage';
+import useAnimes from './hooks/useAnimes';
 
 const App = () => {
   const [activePage, setActivePage] = useState(1);
   const [searchTerm, setSearchTerm] = useState(null);
-  const [animes, getData] = usePage(activePage, searchTerm);
+  const [totalPages, setTotalPages] = useState(1);
+  const [animes, pages] = useAnimes(activePage, searchTerm, totalPages);
 
   const changeTerm = (term) => {
-    console.log(term)
     setSearchTerm(term)
   }
 
@@ -18,11 +18,18 @@ const App = () => {
     setActivePage(value);
   }
 
+  // totalPages state is used to prevent loading causing the pagination to change weirdly
+  // if useAnimes returns a new totalPages value, only changes the pagination
+  useEffect (() => {
+    setTotalPages(pages)
+  }, [pages]) 
+
   return (
     <div>
       <SearchBar onTermSubmit={changeTerm}/>
-      <Pagination count={10} page={activePage} onChange={changePage}/>
+      <Pagination className="pagination" count={pages} page={activePage} onChange={changePage}/>
       <AniList animes={animes}/>
+      <Pagination className="pagination" count={pages} page={activePage} onChange={changePage}/>
     </div>
     );
 }

@@ -14,6 +14,7 @@ const SearchBar = ({ onTermSubmit }) => {
                 <div className="field">
                     <label>Anime Search</label>
                     <input 
+                        className="input"
                         type="text"
                         value={term}
                         onChange={e => setTerm(e.target.value)}/>
