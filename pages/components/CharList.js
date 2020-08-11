@@ -3,7 +3,7 @@ import CharItem from './CharItem';
 
 const CharList = ({charList}) => {
     const renderedList = charList.map((char) => {
-        return <CharItem charId={char.id} />
+        return <CharItem key={char.id} charId={char.id} />
     })
     
     if (charList) {
